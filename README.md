@@ -3,7 +3,7 @@
 1- Creer un job dans Jenkins avec les parametres correspondant au jenkinsfile
 
 ** Option Jenkins public -- EAZYLABTRAINING 
-2- Creer des environments de deploiement sur EAZyLab (docker.labs.eazytraining.fr)
+2- Creer des environments de deploiement sur EAZyLab (docker.labs.eazytraining.fr)<br>
     2.1 : ADD TWO INSTANCE : franela/dind image instance
     2.2 :  Lanch EAZYLABS API Container ==> https://github.com/eazytraining/eazylabs
 
@@ -24,5 +24,5 @@
         http://ip-host-docker.local:1993
 
     2.4 : Remplacer les URL du Jenkinsfile local par ce URL
-    
+
 3 - Launch Build
