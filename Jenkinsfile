@@ -69,7 +69,8 @@ pipeline {
              }
           }
      }          
-          
+    
+    // ajouter les credentials docker dans lea parametres
      stage ('Login and Push Image on docker hub') {
           agent any
         environment {

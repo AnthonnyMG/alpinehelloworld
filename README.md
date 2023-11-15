@@ -1,6 +1,7 @@
 ### ETAPE pour test deploiement
 
 1- Creer un job dans Jenkins avec les parametres correspondant au jenkinsfile
+    >> dont le credentials docker hub et l'username docker hub dans les parametres "ID_DOCKER_PARAMS"
 
 ** Option Jenkins public -- EAZYLABTRAINING 
 2- Creer des environments de deploiement sur EAZyLab (docker.labs.eazytraining.fr)
