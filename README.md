@@ -13,8 +13,10 @@
     2.4 : Remplacer les URL du Jenkinsfile par ce URL
 
 ** Option Jenkins local -- docker host localhost
+--------------------------------------------------------------------------
 2- Creer l'environment de deploiement local 
-    2.1 : Lanch EAZYLABS API Container ==> https://github.com/eazytraining/eazylabs
+    2.1 : Lanch EAZYLABS API Container ==> https://github.com/eazytraining/eazylabs sur le serveur de deployment
+        ** ideal : un pour staging (ici port 1994 pour l'exemple ) et un pour prod (ici port 1993 pour l'exemple ))
 
         docker run -d --name eazylabs-staging  --privileged -v /var/run/docker.sock:/var/run/docker.sock -p 1994:1993 eazytraining/eazylabs:latest
         docker run -d --name eazylabs-staging  --privileged -v /var/run/docker.sock:/var/run/docker.sock -p 1993:1993 eazytraining/eazylabs:latest
