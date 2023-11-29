@@ -29,11 +29,11 @@ pipeline {
             steps {
                script {
                  sh '''
-                    echo "Clean Environment"
-                    docker rm -f $IMAGE_NAME || echo "container does not exist"
-                    docker run --name $IMAGE_NAME -d -p ${PORT_EXPOSED}:${INTERNAL_PORT} -e PORT=${INTERNAL_PORT} ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG
+                    echo "Cleaning existing container if exist"
+                    docker ps -a | grep -i $IMAGE_NAME && docker rm -f $IMAGE_NAME
+                    docker run --name $IMAGE_NAME -d -p $APP_EXPOSED_PORT:$INTERNAL_PORT  -e PORT=$INTERNAL_PORT ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG
                     sleep 5
-                 '''
+                '''
                }
             }
        }
@@ -42,7 +42,7 @@ pipeline {
            steps {
               script {
                 sh '''
-                    curl http://172.17.0.1:${PORT_EXPOSED} | grep -q "Hello world!"
+                    curl -v http://172.17.0.1:${PORT_EXPOSED} | grep -q "Hello world!"
                 '''
               }
            }
