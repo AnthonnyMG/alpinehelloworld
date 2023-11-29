@@ -3,10 +3,10 @@ pipeline {
        ID_DOCKER = "${ID_DOCKER_PARAMS}"
        IMAGE_NAME = "alpinehelloworld"
        IMAGE_TAG = "latest"
-       // PORT_EXPOSED = "80" à paraméter dans le job obligatoirement
+       // PORT_EXPOSED = "8088" à paraméter dans le job obligatoirement et autoriser sur le serveur jenkins dans les UFW
        APP_NAME = "TraingTuxDevops"
        STG_API_ENDPOINT = "ip10-0-20-4-cljd31gfplnglid81ukg-1993.direct.docker.labs.eazytraining.fr"
-       STG_APP_ENDPOINT = "ip10-0-20-4-cljd31gfplnglid81ukg-80.direct.docker.labs.eazytraining.fr"
+       STG_APP_ENDPOINT = "ip10-0-20-4-cljd31gfplnglid81ukg-8088.direct.docker.labs.eazytraining.fr"
        PROD_API_ENDPOINT = "ip10-0-20-5-cljd31gfplnglid81ukg-1993.direct.docker.labs.eazytraining.fr"
        PROD_APP_ENDPOINT = "ip10-0-20-5-cljd31gfplnglid81ukg-80.direct.docker.labs.eazytraining.fr"
        APP_EXPOSED_PORT = "80" 
