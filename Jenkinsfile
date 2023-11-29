@@ -4,7 +4,7 @@ pipeline {
        IMAGE_NAME = "alpinehelloworld"
        IMAGE_TAG = "latest"
        // PORT_EXPOSED = "80" à paraméter dans le job obligatoirement
-       APP_NAME = "ulrich"
+       APP_NAME = "TraingTuxDevops"
        STG_API_ENDPOINT = "ip10-0-1-3-cc7bafssrdn0fvnms4tg-1993.direct.docker.labs.eazytraining.fr"
        STG_APP_ENDPOINT = "ip10-0-1-3-cc7bafssrdn0fvnms4tg-80.direct.docker.labs.eazytraining.fr"
        PROD_API_ENDPOINT = "ip10-0-1-4-cc7bafssrdn0fvnms4tg-1993.direct.docker.labs.eazytraining.fr"
@@ -69,7 +69,8 @@ pipeline {
              }
           }
      }          
-          
+    
+    // ajouter les credentials docker dans lea parametres
      stage ('Login and Push Image on docker hub') {
           agent any
         environment {
@@ -86,6 +87,9 @@ pipeline {
       }    
      
      stage('STAGING - Deploy app') {
+       when {
+              expression { GIT_BRANCH == 'origin/eazyJenkinslab' }
+            }
       agent any
       steps {
           script {
@@ -101,7 +105,7 @@ pipeline {
 
      stage('PRODUCTION - Deploy app') {
        when {
-              expression { GIT_BRANCH == 'origin/master' }
+              expression { GIT_BRANCH == 'origin/prod' }
             }
       agent any
 
@@ -115,12 +119,12 @@ pipeline {
      }
   }
      
-  post {
-       success {
-         slackSend (color: '#00FF00', message: "ULRICH - SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) - PROD URL => http://${PROD_APP_ENDPOINT} , STAGING URL => http://${STG_APP_ENDPOINT}")
-         }
-      failure {
-            slackSend (color: '#FF0000', message: "ULRICH - FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-          }   
-    }     
+//   post {
+//        success {
+//          slackSend (color: '#00FF00', message: "ULRICH - SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) - PROD URL => http://${PROD_APP_ENDPOINT} , STAGING URL => http://${STG_APP_ENDPOINT}")
+//          }
+//       failure {
+//             slackSend (color: '#FF0000', message: "ULRICH - FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+//           }   
+//     }     
 }
