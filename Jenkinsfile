@@ -9,6 +9,7 @@ pipeline {
        STG_APP_ENDPOINT = "ip10-0-20-4-cljd31gfplnglid81ukg-80.direct.docker.labs.eazytraining.fr"
        PROD_API_ENDPOINT = "ip10-0-20-5-cljd31gfplnglid81ukg-1993.direct.docker.labs.eazytraining.fr"
        PROD_APP_ENDPOINT = "ip10-0-20-5-cljd31gfplnglid81ukg-80.direct.docker.labs.eazytraining.fr"
+       APP_EXPOSED_PORT = "80" 
        INTERNAL_PORT = "5000"
        EXTERNAL_PORT = "${PORT_EXPOSED}"
        CONTAINER_IMAGE = "${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG}"
@@ -42,7 +43,7 @@ pipeline {
            steps {
               script {
                 sh '''
-                    curl -v http://172.17.0.1:${PORT_EXPOSED} | grep -q "Hello world!"
+                    curl -v 172.17.0.1:$PORT_EXPOSED | grep -q "Hello world!"
                 '''
               }
            }
