@@ -87,6 +87,9 @@ pipeline {
       }    
      
      stage('STAGING - Deploy app') {
+       when {
+              expression { GIT_BRANCH == 'origin/eazyJenkinslab' }
+            }
       agent any
       steps {
           script {
